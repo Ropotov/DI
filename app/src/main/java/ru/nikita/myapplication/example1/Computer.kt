@@ -1,5 +1,7 @@
 package ru.nikita.myapplication.example1
 
+import javax.inject.Inject
+
 class Computer(
     val monitor: Monitor,
     val computerTower: ComputerTower,

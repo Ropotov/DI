@@ -1,4 +1,6 @@
 package ru.nikita.myapplication.example1
 
-class Processor {
+import javax.inject.Inject
+
+class Processor{
 }

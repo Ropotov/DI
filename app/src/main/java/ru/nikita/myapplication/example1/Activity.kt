@@ -1,11 +1,16 @@
 package ru.nikita.myapplication.example1
 
+import javax.inject.Inject
+
 class Activity {
 
+    private val component = DaggerNewComponent.create()
 
-   lateinit var keyboard: Keyboard
+    @Inject
+    lateinit var computer: Computer
 
-   init {
-       Component().inject(this)
-   }
+    init {
+        component.inject(this)
+    }
+
 }
