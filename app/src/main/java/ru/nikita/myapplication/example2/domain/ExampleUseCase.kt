@@ -1,12 +1,12 @@
 package ru.nikita.myapplication.example2.domain
 
-import ru.nikita.myapplication.example2.domain.ExampleRepository
+import javax.inject.Inject
 
-class ExampleUseCase(
+class ExampleUseCase @Inject constructor(
     private val repository: ExampleRepository
 ) {
 
     operator fun invoke() {
-
+        repository.method()
     }
 }

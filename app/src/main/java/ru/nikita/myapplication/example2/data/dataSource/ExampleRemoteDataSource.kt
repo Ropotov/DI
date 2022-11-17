@@ -1,4 +1,4 @@
-package ru.nikita.myapplication.example2.data
+package ru.nikita.myapplication.example2.data.dataSource
 
 interface ExampleRemoteDataSource {
 
