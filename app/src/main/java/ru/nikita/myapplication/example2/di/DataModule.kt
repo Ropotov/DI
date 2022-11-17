@@ -1,18 +1,30 @@
 package ru.nikita.myapplication.example2.di
 
-import dagger.Binds
+import android.content.Context
 import dagger.Module
+import dagger.Provides
 import ru.nikita.myapplication.example2.data.dataSource.ExampleLocalDataSource
 import ru.nikita.myapplication.example2.data.dataSource.ExampleLocalDataSourceImpl
 import ru.nikita.myapplication.example2.data.dataSource.ExampleRemoteDataSource
 import ru.nikita.myapplication.example2.data.dataSource.ExampleRemoteDataSourceImpl
 
 @Module
-interface DataModule {
+class DataModule(
+   private val context: Context
+) {
 
-    @Binds
-    fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource
+    @Provides
+    fun provideContext(): Context {
+        return context
+    }
 
-    @Binds
-    fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource
+    @Provides
+    fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource {
+        return impl
+    }
+
+    @Provides
+    fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource {
+        return impl
+    }
 }
