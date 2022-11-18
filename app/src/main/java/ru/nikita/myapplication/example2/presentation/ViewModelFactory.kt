@@ -2,14 +2,15 @@ package ru.nikita.myapplication.example2.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.nikita.myapplication.example2.domain.ExampleRepository
-import ru.nikita.myapplication.example2.domain.ExampleUseCase
+import ru.nikita.myapplication.example2.di.ApplicationScope
 import javax.inject.Inject
+import javax.inject.Provider
 
+@ApplicationScope
 class ViewModelFactory @Inject constructor(
-    private val viewModels: @JvmSuppressWildcards Map<String, ViewModel>
+    private val viewModelsProviders: @JvmSuppressWildcards Map<String, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return viewModels[modelClass.simpleName] as T
+        return viewModelsProviders[modelClass.simpleName]?.get() as T
     }
 }
