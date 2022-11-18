@@ -7,11 +7,10 @@ import ru.nikita.myapplication.example2.presentation.MainActivity
 import ru.nikita.myapplication.example2.presentation.MainActivity2
 
 @ApplicationScope
-@Component(modules = [DataModule::class, DomainModule::class, ViewModelModule::class])
+@Component(modules = [DataModule::class, DomainModule::class])
 interface AppComponent {
 
-    fun inject(activity: MainActivity)
-    fun inject(activity: MainActivity2)
+    fun activityComponentFactory(): ActivityComponent.Factory
 
     @Component.Factory
     interface AppComponentFactory {

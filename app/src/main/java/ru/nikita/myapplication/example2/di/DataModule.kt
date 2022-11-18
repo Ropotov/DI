@@ -2,10 +2,7 @@ package ru.nikita.myapplication.example2.di
 
 import dagger.Binds
 import dagger.Module
-import ru.nikita.myapplication.example2.data.dataSource.ExampleLocalDataSource
-import ru.nikita.myapplication.example2.data.dataSource.ExampleLocalDataSourceImpl
-import ru.nikita.myapplication.example2.data.dataSource.ExampleRemoteDataSource
-import ru.nikita.myapplication.example2.data.dataSource.ExampleRemoteDataSourceImpl
+import ru.nikita.myapplication.example2.data.dataSource.*
 
 @Module
 interface DataModule {
@@ -15,6 +12,12 @@ interface DataModule {
     fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource
 
     @Binds
+    @RemoteQualifier
     @ApplicationScope
     fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource
+
+    @Binds
+    @TestQualifier
+    @ApplicationScope
+    fun bindTestDataSource(impl: ExampleTestDataSourceImpl): ExampleRemoteDataSource
 }

@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     private val component by lazy {
         (application as ExampleApp).component
+            .activityComponentFactory()
+            .create("ID", "MainActivity")
     }
 
     @Inject
@@ -21,9 +23,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[ExampleViewModel::class.java]
     }
-    private val viewModel2 by lazy {
-        ViewModelProvider(this, viewModelFactory)[ExampleViewModel2::class.java]
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.method()
-        viewModel2.method()
 
         findViewById<TextView>(R.id.tv).setOnClickListener {
             Intent(this, MainActivity2::class.java).apply {

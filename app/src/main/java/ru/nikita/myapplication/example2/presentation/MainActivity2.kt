@@ -11,6 +11,8 @@ class MainActivity2 : AppCompatActivity() {
 
     private val component by lazy {
         (application as ExampleApp).component
+            .activityComponentFactory()
+            .create("ID 2", "MainActivity2")
     }
 
     @Inject
@@ -19,9 +21,6 @@ class MainActivity2 : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[ExampleViewModel::class.java]
     }
-    private val viewModel2 by lazy {
-        ViewModelProvider(this, viewModelFactory)[ExampleViewModel2::class.java]
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
@@ -29,6 +28,5 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.method()
-        viewModel2.method()
     }
 }
